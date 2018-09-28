@@ -2,6 +2,42 @@ git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 
 
+
+## ****************************************************
+## ****************************************************
+## Building the container
+$ docker build -f Dockerfile -t mceasar/sentiment-analysis-web-app .
+
+## Pushing the image
+$ docker push mceasar/sentiment-analysis-web-app
+
+## Pulling the image from Docker Hub
+$ docker pull mceasar/sentiment-analysis-web-app
+
+## Running the container
+$ docker run -d -p 8080:8080 -e SA_LOGIC_API_URL='http://<container_ip or docker machine ip>:5000' $DOCKER_USER_ID/sentiment-analysis-web-app
+
+$ docker run -d -p 8080:8080 -e SA_LOGIC_API_URL='http://172.17.0.3:5000' mceasar/sentiment-analysis-web-app
+
+## ----------------------
+## Getting Container IP
+$ docker container list
+$ docker inspect <container-id>
+
+"Networks": {
+                "bridge": {
+                	...
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.3",
+                    ...
+                }
+           }
+## ----------------------
+## ****************************************************
+## ****************************************************
+
+
+
 -----------------------
 Kubernets Tutorial:
 ***********************
